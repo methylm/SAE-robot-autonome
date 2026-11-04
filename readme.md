@@ -28,3 +28,11 @@ schéma fonctionnel (chaîne d'information) schéma structurel
 -- essais fonctionnel du firmware d'origine - le compiler, téléverser
 
 -- procès verbal de reception - rédaction
+
+-- vérification partie puissance et commande mesures (tensions courants, signaux
+pwm, autonomie) analyse/schémas faire un protocole expérimental identifier les
+bornes, composants, valeurs, signaux attendus calculs, calculer autonomie
+théorique
+
+-- récupération code compilation, identifier les blocs utilisés dans le code
+proposer une première épuration
