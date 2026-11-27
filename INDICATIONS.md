@@ -40,17 +40,7 @@ Firmware épuré (dépôt Git), journal des tests de non-régression, dossier de
 NON FAIT
 /////////////////////////////////////////////////////////////////////////
 Séances 1 et 2
-- Procès-verbal de réception.
-- Inventaire des composants.
-- Relevé des références des composants.
-- Relevé des anomalies.
-- Tableau des mesures de tension batterie pour chaque état.
-- Tableau des mesures de courant pour chaque état.
-- Tableau des puissances consommées pour chaque état.
-- Relevé des signaux PWM.
-- Mesure de l’ondulation du bus 5 V.
-- Courbe de décharge de la batterie.
-- Estimation commentée de l’autonomie.
+
 - Procès-verbal d’essais des fonctions d’origine.
 - Tableau de conformité des fonctions.
 Séance 3
@@ -75,7 +65,17 @@ A REPRENDRE / A REPRECISER AVANT VALIDATION "FINALE"
 /////////////////////////////////////////////////////////////////////////
 FAIT / PRET POUR ETRE DANS LE RAPPORT
 /////////////////////////////////////////////////////////////////////////
-
+- Procès-verbal de réception.
+- Inventaire des composants.
+- Relevé des références des composants.
+- Relevé des anomalies.
+- Tableau des mesures de tension batterie pour chaque état.
+- Tableau des mesures de courant pour chaque état.
+- Tableau des puissances consommées pour chaque état.
+- Relevé des signaux PWM.
+- Mesure de l’ondulation du bus 5 V.
+- Courbe de décharge de la batterie.
+- Estimation commentée de l’autonomie.
 
 
 
