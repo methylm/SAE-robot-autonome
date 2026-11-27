@@ -1,0 +1,95 @@
+\section{SEANCE 2}
+L'objectif de cette séance est de réaliser les séries de mesures demandées.
+On a le système complet, carte, batterie, capteurs.
+On veut ces mesures en particulier
+
+3 mesures sur la batterie, tension au repos, en fonctionnement, 
+puis lors de la poussée maximale
+donc protocole de test à prévoir, quelle valeur pour la poussée maximale
+par rapport à la poussée en fonctionnement normal
+Tester les différents états du robot, et à chaque fois, 
+mesurer courant et puissance. Les états doivent être définis
+couché, balancier, transition, équilibre
+mesurer les signaux pwm et la tension du moteur à l'oscilloscope
+on veut également les ondulations du bus 5V (à définir, bus etc)
+On veut une extrapolation de l'autonomie du robot
+donc calcul de l'autonomie
+
+à la fin de cette séance, on veut, un pv de réception, plusieurs schémas,
+fonctionnel, structurel, un tableau de mesures qui redonne toutes les valeurs,
+pv d'essaies des fonctions d'origine
+
+MESURE 1 & 2
+TENSION DE LA batterie
+repos, charge (équilibre) poussée maximale (roues bloquées)
+COURANT CONSOMMé (ampèremètre en série ou sonde de courant)
+calculer puissance appelée par chaque état
+MESURE 3 & 4
+signaux PWM des moteurs et tension aux bornes d'un moteur
+(en avance, équilibre, oscillation volontaire)
+MESURE 5
+Vérifier la tension du bus 5 V et son ondulation au repos et sous charge
+MESURE 6
+mesure de la décharge sur une durée d’essai donnée (30
+min de fonctionnement modélisé)
+CALCULS
+Estimer la fréquence de découpage
+Estimer l’autonomie énergétique : extrapolation, comparaison à l’usage réel
+
+DOCUMENTS
+PV de réception (inventaire, anomalies, références des composants relevées)
+Schéma fonctionnel 
+(chaînes d’information et d’énergie) et schéma structurel du système
+Tableau de mesures puissance : (Vbat , I, P ) pour chaque état, signaux PWM, 
+ondulation du bus 5 V, courbe de décharge et estimation d’autonomie commentée
+PV d’essais des fonctions d’origine (tableau conforme / non conforme)
+
+On distingue plusieurs états de fonctionnement du robot.
+Repos, le robot ne fait aucun mouvement, il est soit sur le dos soit couché.
+Transition, le robot passe de couché à équilibre
+
+MESURE 1 & 2 DETAIL
+Tout branchement doit être effectué robot éteint (interrupteur batterie arrière).
+on veut mesurer la tension de la batterie au repos, en charge, et en poussée maximale.
+robot éteint. On place deux câbles sur les pins connectés sur l'entrée de la batterie.
+On débranche la batterie, et on vient ralonger la batterie avec deux câbles.
+On place une pince ampèremétrique sur le câble relié à la borne + de la batterie.
+On téléverse le code donné par le constructeur sur le site de leur produit.
+Une fois branché, on le place au sol dans un espace dégagé.
+On place un obstacle devant le capteur du robot, son fonctionnement normal est qu'il
+va légèrement reculer puis avancer à nouveau, restant alors en équilibre.
+On allume le robot avec l'interrupteur situé sur la batterie.
+Le robot passe de l'état couché à équilibre, il va chercher à avancer, puis rester 
+en équilibre devant un obstacle.
+Pour réaliser la mesure au repos, il faut le placer sur le dos, il ne peut donc
+pas se mouvoir.
+On éteint le robot, on le couche, puis on le rallume. Il va chercher à se relever,
+et on réalise la mesure en charge. On éteint le robot.
+Pour la mesure à poussée maximale, on vient bloquer les roues.
+On éteint le robot une fois la mesure terminée.
+On calcule la puissance à partir des résultats, pour chaque état.
+On utilise des câbles de longueur adéquate pour que le robot puisse se mouvoir légèrement
+
+MESURE 3 & 4 DETAIL
+on place le robot dans les mêmes conditions que pour la première mesure.
+On veut mesurer la tension d'alimentation des moteurs, dans tout les cas différents,
+ainsi que la tension de commande PWM en sortie de la carte.
+Mêmes conditions que la mesure précédente, avec un obsacle devant.
+On mesure dans les 3 cas souhaités, repos, équilibre, poussée maximale.
+
+MESURE 5 jsp
+
+MESURE 6 on place le robot en charge (ou lié avec une corde pour ne pas qu'il tombe).
+On réalise une mesure de la tension de la batterie, au début de la mesure.
+Après 30 minutes, on mesure à nouveau la tension de la batterie.
+Avec la différence de potentiel entre les deux instants, on calcule l'autonomie
+théorique du robot.
+
+POUR CHAQUE ESSAI
+procédure
+résultat attendu
+résultat constaté
+
+-> reste à faire
+trouver noms des broches à tester
+leur valeur attendue

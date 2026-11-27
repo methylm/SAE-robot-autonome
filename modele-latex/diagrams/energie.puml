@@ -1,0 +1,34 @@
+@startuml energie
+
+title ELEGOO Tumbller V1.1 - Chaîne d'énergie
+
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam nodesep 25
+skinparam ranksep 30
+skinparam defaultFontSize 12
+
+rectangle "Chaîne d'énergie" {
+
+    component "**ALIMENTER**\nBatterie lithium 7,4 V\nInterrupteur" as ALIM
+
+    component "**DISTRIBUER**\nTB6612FNG\nDouble pont en H" as DIST
+
+    component "**CONVERTIR**\nDeux moteurs à courant continu" as CONV
+
+    component "**TRANSMETTRE**\nRéducteurs mécaniques\nDeux roues motrices" as TRANS
+
+    component "**AGIR**\nMaintien de l'équilibre\nDéplacement du robot" as ACT
+
+    ALIM -down-> DIST : Énergie électrique continue
+    DIST -down-> CONV : Énergie électrique modulée
+    CONV -down-> TRANS : Énergie mécanique de rotation
+    TRANS -down-> ACT : Effort de traction
+
+}
+
+component "Chaîne d'information" as INFO
+
+INFO -right-> DIST : PWM / DIR / STBY
+
+@enduml

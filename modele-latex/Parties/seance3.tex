@@ -1,0 +1,121 @@
+\section{SEANCE 3}
+L'objectif de cette séance est de récupérer le code d'origine du robot, le compiler, le téléverser, et vérifier que son
+fonctionnement d'usine est correct.
+On doit qualifier les différentes fonctions du code par leur contribution spécifique.
+Les fonctions qui ne sont pas utilisées dans le cadre de l'objectif de la SAE doivent être identifiées et supprimées,
+tout comme les valeurs numériques non nommées, les duplications et les chemins morts.
+Un plan d'épuration doit être rédigé indiquant ce qui doit rester, ce qui doit être supprimé, et dans quel ordre.
+Des tests de non-régression doivent être effectués après chaque étape.
+
+Documents à fournir
+tableau fonction rôle status (garder/supprimer), et plan d'épuration argumenté
+
+
+Tumbller.ino
+
+//////////////////////////////////
+//////////////////////////////////
+// IMPORTS
+//////////////////////////////////
+
+//////////////////////////////////
+//////////////////////////////////
+// VARIABLES GLOBALES / CONSTANTES
+//////////////////////////////////
+
+function_mode
+motion_mode
+
+
+deux variables d'états sont utilisées par la boucle 
+principale d'execution. Plusieurs modes d'execution
+sont prévus initialement.
+Il prévoit la possibilité d'utiliser pour contrôler
+les mouvements du robot, soit une  télécommande 
+infrarouge, soit un émétteur bluetooth.
+
+cette fonction va réaliser un branchement switch/case 
+sur la variable function_mode qui est une enum (variable définissant plusieurs valeurs
+différentiables les unes d'entre elles, mais rattachées à cette enum, réaliser une 
+switch/capteurs sur une variable enum signifie donner une instruction case pour 
+toutes les valeurs possibles de l'enum ainsi que le default).
+En fonction de cette enum, on va executer le code correspondant à un état particulier du robot
+(couché, équilibre, balancier, transition)
+void functionMode();
+
+cette fonction réalise deux opérations switch/case une après l'autre
+et pour chaque cas, assigne une valeur de vitesse pour les variables 
+de la consigne de vitesse linéaire, et vitesse de rotation.
+Le premier switch est fait par rapport au type de déplacement, le deuxième est
+fait par rapport au type de contrôle.
+Pour le mode de mouvement STOP et START, l'état d'activation des leds sont également modifiés.
+Pour le mode START, la fonction carStop est appelée pour couper la consigne de vitesse du robot
+setMotionState()
+
+cette fonction va réaliser un switch/case sur la variable caractère key_value, suivant la valeur
+de cette variable, le robot va être bloqué dans le mode de mouvement correspondant. La variable
+est remise à sa valeur de départ à la fin de la fonction, après le switch/case.
+Pour maintenir le robot dans le mode correspondant, la variable devra être remise à la bonne valeur
+à chaque execution de la boucle principale
+keyEventHandle()
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+// fonction de la boucle d'execution d'arduino
+//////////////////////////////////////////////
+
+setup s'execute une seule fois au début de l'éxecution du programme.
+Son fonctionnenment est le suivant : 
+Serial.begin(9600) -> initialisation du port série 
+ultrasonicInit() -> initialisation des pins et
+interuptions du capteur ultrasonique 
+keyInit() -> initialisation du pin et de l'interuption de la touche
+permettant de lancer une routine de test des différents modes
+ qui change toutes les 500ms
+rgb.initialize() -> on initialise la led rgb programmable 
+voltageInit() -> on configure la tension utilisée comme référence dans les
+entrées analogiques
+start_prev_time = millis() -> assignation du temps depuis l'execution du programme,
+cette valeur sert pour mesurer des différences de temps et donc d'executer
+du code à un temps donné
+carInitialize() -> on initialise les pins restants et on assigne balanceCar comme 
+fonction pour un objet timer. On stoppe également le robot dans  cette partie
+setup()
+
+loop s'execute continuellement
+La boucle principale d'execution s'articule autour de la lecture de variables et grandeurs physiques
+et valeurs de capteurs, le calcul d'une consigne cible, puis le changement d'état du robot en fonction
+de son environment (présence obstacle, tourner).
+getKeyValue() -> assigne une valeur à la variable key_value
+getBluetoothData() -> assigne la variable function_mode (soit BLUETOOTH soit IDLE)
+keyEventHandle() -> assigne des variables et notamment motion_mode, en fonction de key_value
+getDistance() -> on effectue une condition sur une différence de temps (50ms),
+donc toute les 50ms, on va effectuer ce qui est dans la condition
+(raz du compteur, assignation de l'interrupt sur ECHO_PIN, et on effectue 3 
+écritures, bas, haut, puis nouveau bas)
+voltageMeasure() -> effectue une condition sur le niveau de la variable "voltage", alumage de la led
+si le niveau est trop bas
+setMotionState() -> assigne les consignes de vitesse linéaire et de rotation
+functionMode() -> assigne la boucle principale, la routine, que le robot
+va effectuer, c'est les fonctions appellées dans cette fonction là qui vont 
+faire que le robot avance tout seul, ou essaie de suivre
+checkObstacle() -> assigne les variables booléennes de présence d'obstacles, 
+utilisées dans les fonctions des modes de fonctionnement du robot
+rgb.blink(100) -> fait clignoter la led
+bloc direct -> affichage de la valeur de l'angle du filtre kalman
+bloc direct -> stop le robot
+bloc direct -> passage en mode balancier du robot
+loop()
+
+Tumbller.ino
+contient la boucle d'execution que la carte arduino va charger. Elle charge
+aussi les bibliothèques principales et importe la logique utilisée pour
+les calculs de vitesse
+
+faire remonter les CONSTANTES
+exposer plus facilement les paramètres
+mettre de la poo pour faciliter la réusabilité, l'extension
+encapsuler
+meilleure séparation des responsabilitées
+le flux d'information est difficilement lisible
+mettre des interfaces

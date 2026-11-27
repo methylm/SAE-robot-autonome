@@ -1,0 +1,22 @@
+\ExplSyntaxOn
+
+\seq_new:N \g_rapport_etudiants_seq
+
+% Chaque appel dans infos.tex ajoute un nom à la liste.
+\NewDocumentCommand{\Etudiant}{m}{
+  \seq_gput_right:Nn \g_rapport_etudiants_seq {#1}
+}
+
+% Sur la couverture, afficher un nom par ligne.
+\NewDocumentCommand{\AfficherEtudiants}{}{
+  \seq_use:Nn \g_rapport_etudiants_seq { \par }
+}
+
+% Préparer la liste avant de la transmettre à hyperref pour préserver les accents.
+\NewDocumentCommand{\RenseignerAuteursPDF}{}{
+  \exp_args:Ne \hypersetup {
+    pdfauthor = { \seq_use:Nn \g_rapport_etudiants_seq { ,~ } }
+  }
+}
+
+\ExplSyntaxOff

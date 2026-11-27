@@ -1,0 +1,35 @@
+@startuml structurel
+
+title ELEGOO Tumbller V1.1 - Schéma structurel
+
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam nodesep 25
+skinparam ranksep 30
+skinparam defaultFontSize 12
+
+rectangle "Tumbller V1.1" {
+
+    component "**Alimentation**\nBatterie 7,4 V\nInterrupteur\nRegulation" as ALIM
+
+    component "**Acquisition**\nMPU6050\nUltrason\nInfrarouge\nEncodeurs\nPont diviseur" as ACQ
+
+    component "**Traitement**\nArduino Nano\nATmega328P" as MCU
+
+    component "**Interface utilisateur**\nBluetooth\nBouton\nLED RGB" as IHM
+
+    component "**Puissance**\nTB6612FNG\nDouble pont en H" as PWR
+
+    component "**Mecanique**\nMotoréducteurs CC\nRoues\nChassis" as MEC
+
+    ALIM -down-> MCU
+    ACQ -right-> MCU
+    MCU -right-> IHM
+    MCU -down-> PWR
+    PWR -down-> MEC
+
+    ALIM --> PWR
+
+}
+
+@enduml

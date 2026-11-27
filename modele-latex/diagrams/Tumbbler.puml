@@ -1,0 +1,15 @@
+@startuml Tumbller_Structure
+' Code du diagramme structurel
+@enduml
+
+@startuml Tumbller_Acquisition
+' Code de la chaîne d'acquisition
+@enduml
+
+@startuml Tumbller_Information
+' Code de la chaîne d'information
+@enduml
+
+@startuml Tumbller_Energie
+' Code de la chaîne d'énergie
+@enduml

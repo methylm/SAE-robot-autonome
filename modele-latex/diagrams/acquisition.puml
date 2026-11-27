@@ -1,0 +1,45 @@
+@startuml acquisistion
+
+title ELEGOO Tumbller V1.1 - Chaîne d'acquisition
+
+left to right direction
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+rectangle "Grandeurs physiques" {
+    rectangle "Accélération et vitesse angulaire" as G1
+    rectangle "Rotation des roues" as G2
+    rectangle "Distance frontale" as G3
+    rectangle "Rayonnement infrarouge" as G4
+    rectangle "Tension batterie" as G5
+}
+
+rectangle "Captation et conditionnement" {
+    component "MPU6050" as IMU
+    component "Encodeurs moteurs" as ENC
+    component "Capteur ultrason" as US
+    component "Récepteurs IR" as IR
+    component "Pont diviseur résistif" as DIV
+}
+
+rectangle "Acquisition numérique — ATmega328P" {
+    component "Interface I2C" as I2C
+    component "Compteurs d'impulsions" as CPT
+    component "Mesure temporelle" as TEM
+    component "Entrées numériques" as GPIO
+    component "CAN 10 bits" as ADC
+}
+
+G1 --> IMU
+G2 --> ENC
+G3 --> US
+G4 --> IR
+G5 --> DIV
+
+IMU --> I2C : Données numériques
+ENC --> CPT : Impulsions
+US --> TEM : ECHO
+IR --> GPIO : Signaux logiques
+DIV --> ADC : Tension analogique
+
+@enduml

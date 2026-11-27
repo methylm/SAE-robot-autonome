@@ -1,0 +1,35 @@
+@startuml information
+
+title ELEGOO Tumbller V1.1 - Chaîne d'information
+
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam nodesep 25
+skinparam ranksep 30
+skinparam defaultFontSize 12
+
+rectangle "Chaîne d'information" {
+
+    component "**ACQUÉRIR**\nMesures des capteurs\nConsignes utilisateur" as ACQ
+
+    component "**TRAITER**\nArduino Nano - ATmega328P\nEstimation d'état\nGestion des modes\nAsservissement" as TRT
+
+    component "**COMMUNIQUER**\nInterface PWM / Direction\nSignalisation RGB\nCommunication série" as COM
+
+    ACQ -down-> TRT : Données numériques
+    TRT -down-> COM : Ordres et états
+
+}
+
+component "Grandeurs physiques" as PHY
+component "Consignes utilisateur" as USER
+component "Chaîne d'énergie" as ENR
+component "Utilisateur" as IHM
+
+PHY -down-> ACQ
+USER -down-> ACQ
+
+COM -down-> ENR : Ordres de commande
+COM -down-> IHM : Informations d'état
+
+@enduml

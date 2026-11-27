@@ -1,0 +1,59 @@
+% La couverture et le rapport commencent chacun à la page 1.
+% Désactiver l'ancre de la couverture pour que les liens ciblent le rapport.
+\hypersetup{pageanchor=false}
+
+\begin{titlepage}
+  \definecolor{bleuiut}{HTML}{164B72}
+  \newcommand{\TraitCouverture}{%
+    {\color{bleuiut}\rule{\linewidth}{0.9pt}}\par
+  }
+
+  % Logos et établissement
+  \noindent
+  \begin{minipage}[c]{0.65\linewidth}
+    \includegraphics[width=5.8cm]{Base/URouen.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.30\linewidth}
+    \raggedleft
+    \includegraphics[height=2.2cm]{Base/IUTrouen.png}
+  \end{minipage}
+
+  \vspace{1cm}
+  \begin{center}
+    {\large \Universite\par}
+    \Formation\par
+  \end{center}
+
+  % Matière et titre du rapport
+  \vfill
+  \begin{center}
+    {\large \Matiere\par}
+    \vspace{0.6cm}
+    \TraitCouverture
+    \vspace{0.5cm}
+    {\Huge\bfseries\color{bleuiut} \TitreRapport\par}
+    \vspace{0.5cm}
+    \TraitCouverture
+  \end{center}
+  \vfill
+
+  % Étudiants à gauche, encadrant et date à droite
+  \noindent
+  \begin{minipage}[t]{0.46\linewidth}
+    \raggedright
+    \textbf{Rédigé par}\par
+    \AfficherEtudiants\par
+    \Groupe
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.46\linewidth}
+    \raggedleft
+    \textbf{Encadrant}\par
+    \Encadrant\par
+    \DateRapport
+  \end{minipage}\par
+  \vspace{1cm}
+\end{titlepage}
+
+\hypersetup{pageanchor=true}

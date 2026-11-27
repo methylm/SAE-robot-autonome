@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Base/sommaire}[2026/11/04 Sommaire du template]
+
+% Afficher les titres jusqu'au niveau des sous-sous-sections.
+\setcounter{tocdepth}{3}
+\addto\captionsfrench{%
+  \renewcommand{\contentsname}{Sommaire}%
+}
+
+% À appeler après la page de garde, avant le contenu du rapport.
+\newcommand{\sommaire}{%
+  \clearpage
+  % Numéroter le sommaire en chiffres romains.
+  \pagenumbering{roman}%
+  \tableofcontents
+  %
+  % Repartir à 1 pour le rapport.
+  \clearpage
+  \pagenumbering{arabic}%
+}
+\endinput

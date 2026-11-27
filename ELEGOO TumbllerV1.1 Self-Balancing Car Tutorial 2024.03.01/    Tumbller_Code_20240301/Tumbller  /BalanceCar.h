@@ -114,7 +114,7 @@ void balanceCar()
   }
 
   if (motion_mode == STOP && key_flag != '4')
-  {
+  {s
     car_speed_integeral = 0;
     setting_car_speed = 0;
     pwm_left = 0;
